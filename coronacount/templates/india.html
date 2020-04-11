@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+{% extends "base.html" %}
+
+{% load static %}
+
+{% block body_block %}
+
+<!-- table     -->
+
+
+<div class="container padding-y-md max-width-lg">
+  <h1 class="center h">Covid19 Status India</h1>
+  <br>
+<table class="table table--expanded js-table width-100%" aria-label="Table Example">
+  <thead class="table__header table__header--sticky">
+    <tr class="table__row">
+      <th class="table__cell text-left " scope="col">#</th>
+      <th class="table__cell text-left " scope="col">State</th>
+      <th class="table__cell text-left " scope="col">Confirmed</th>
+      <!-- <th class="table__cell text-left " scope="col">New</th> -->
+      <th class="table__cell text-left " scope="col">Deaths</th>
+      <th class="table__cell text-left " scope="col">Recovered</th>
+
+
+    </tr>
+  </thead>
+
+  <tbody class="table__body">
+
+    {% for sn,sd in sw.items %}
+
+
+
+      <tr class="table__row">
+
+        <td class="table__cell " role="cell">
+          <span class="table__label" aria-hidden="true">#</span>
+          <button class="btn btn--primary bb" aria-controls="modal-{{sd.statecode}}">
+          <svg id="svg" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="30" height="30" viewBox="0, 0, 400,400"><g id="svgg"><path id="path0" d="M168.333 47.491 C -13.036 88.017,14.446 354.167,200.000 354.167 C 353.402 354.167,413.907 155.525,286.361 70.638 C 253.530 48.788,205.065 39.283,168.333 47.491 M208.333 106.667 C 211.565 109.898,211.667 112.222,211.667 182.842 L 211.667 255.685 235.546 232.009 C 261.622 206.155,264.686 204.535,272.576 212.424 C 280.955 220.804,279.776 222.638,241.207 261.207 C 195.481 306.933,204.519 306.933,158.793 261.207 C 120.224 222.638,119.045 220.804,127.424 212.424 C 135.314 204.535,138.378 206.155,164.454 232.009 L 188.333 255.685 188.333 182.842 C 188.333 101.538,188.070 103.333,200.000 103.333 C 202.778 103.333,206.481 104.815,208.333 106.667 " stroke="none" fill="var(--color-primary)" fill-rule="evenodd"></path></g></svg>
+        </button>
+
+          <!-- <button class="btn btn--subtle">></button> -->
+        </td>
+
+
+      <td class="table__cell " role="cell">
+        <span class="table__label" aria-hidden="true">State:</span> <span>{{sn}}</span>
+      </td>
+
+      <td class="table__cell text-left" role="cell">
+        <span class="table__label" aria-hidden="true">Confirmed:</span>{{sd.confirmed}}&nbsp;
+        {% if sd.deltaconfirmed != "0" %}
+        <span class ="s"><sub>&#x2191;{{sd.deltaconfirmed}}</sub></span>
+        {% endif %}
+      </td>
+
+
+
+      <td class="table__cell text-left" role="cell">
+        <span class="table__label" aria-hidden="true">Deceased:</span> {{sd.deaths}}&nbsp;
+        {% if sd.deltadeaths != "0" %}
+        <span class ="d"><sub>&#x2191;{{sd.deltadeaths}}</sub></span>
+        {% endif %}
+      </td>
+
+      <td class="table__cell text-left " role="cell">
+        <span class="table__label" aria-hidden="true">Recovered:</span> {{sd.recovered}}
+        {% if sd.deltarecovered != "0" %}
+        <span class ="r"><sub>&#x2191;{{sd.deltarecovered}}</sub></span>
+        {% endif %}
+      </td>
+
+
+
+
+      <div class="modal modal--animate-scale flex flex-center bg-contrast-higher bg-opacity-90% padding-md js-modal" id="modal-{{sd.statecode}}">
+  <div class="modal__content width-100% max-width-sm padding-md bg radius-md shadow-md" role="alertdialog" tabindex="-1" aria-labelledby="modal-title-3" aria-describedby="modal-description-3">
+    <button class="reset modal__close-btn modal__close-btn--inner float-right position-sticky top-0 js-modal__close js-tab-focus">
+      <svg class="icon" viewBox="0 0 20 20">
+        <title>Close modal window</title>
+        <g fill="none" stroke="currentColor" stroke-miterlimit="10" stroke-width="2">
+          <line x1="3" y1="3" x2="17" y2="17" />
+          <line x1="17" y1="3" x2="3" y2="17" />
+        </g>
+      </svg>
+    </button>
+
+    <div class="text-component">
+      <h2 id="modal-title-3">{{sn}}</h2>
+
+      <p id="modal-description-3"> District Wise Data</p><br>
+      <div class="text-divider"></div>
+
+      <!-- disttable000 -->
+      <div class="parent grid gap-xs">
+        <div class="col-6">
+      <!-- <h4> -->
+        District
+        <div class="text-divider"></div>
+      {% for district,data in sd.districtData.items %}
+        {{district}}<br>
+        <div class="text-divider"></div>
+      {% endfor %}
+      <!-- </h4> -->
+      </div>
+      <div class="col-6">
+    <!-- <h4> -->
+      Confirmed
+      <div class="text-divider"></div>
+      {% for district,data in sd.districtData.items %}
+        {{data.confirmed}}&nbsp;
+        {% if data.delta.confirmed != 0 %}
+      <span class ="d">&#x2191;{{data.delta.confirmed}}</span>
+      {% endif %}<br>
+
+
+     <div class="text-divider"></div>
+
+
+    {% endfor %}
+    <!-- </h4> -->
+    </div>
+
+
+    </div>
+      <!-- disttable -->
+    </div>
+  </div>
+
+</div>
+
+
+
+    </tr>
+
+
+    {% endfor %}
+
+
+</tbody>
+</table>
+</div>
+
+
+
+
+<style>
+.center {
+  text-align: center;
+
+}
+.bb{
+  padding: 0;
+border: none;
+background: none;
+}
+.d{
+  color: var(--color-error);
+}
+.r{
+  color: var(--color-primary-lighter);
+}
+.h{
+  color: var(--color-primary);
+}
+.s{
+  color: var(--color-warning-dark);
+  font: var(--text-xs)
+}
+.ch{
+  color: var(--color-primary);
+  font: Black 900;
+}
+.ss{
+  width: 60%;
+}
+</style>
+
+<!-- table -->
+
+{% endblock %}
