@@ -50,6 +50,7 @@ def getStates():
 
 def index(request):
     return render(request,'index.html',{"world_data":getworld(),"india_data":getindia(),"per":per})
+    #return render(request,'base.html')
 
 def india(request):
     return render(request,'india.html',{"sw":getStates()})
