@@ -3,9 +3,27 @@
 
 <html lang="en" dir="ltr">
   <head>
-
+    <title>Corona Live Status</title>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" itemprop="description" content="Corona Counter is an informative website that shows live number of corona cases in World and India.">
+    <meta name="keywords" itemprop="keywords" content="corona, coronacounter, covid, covid19, corona india, covid19india, corona stats">
+    <link rel="canonical" href="https://coronacounter.site/">
+
+    <link rel="apple-touch-icon" sizes="180x180" href="{% static "favicon/logo180.png" %}" >
+    <link rel="icon" type="image/png" sizes="32x32" href="{% static "favicon/logo32.png" %}" >
+    <link rel="icon" type="image/png" sizes="16x16" href="{% static "favicon/logo16.png" %}" >
+    <link rel="manifest" href="{% static "favicon/site.webmanifest" %}">
+
+    <meta property="og:url" content="https://coronacounter.site/" />
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="Corona Live status" />
+    <meta property="og:description" content="Corona Counter is an informative website that shows live number of corona cases in World and India." />
+    <meta property="og:image" content="{% static "favicon/logo256.png" %}" />
+    <meta property="og:site_name" content="Coronacounter" />
+
+
+
     <script>document.getElementsByTagName("html")[0].className += " js";</script>
     <script>
       if('CSS' in window && CSS.supports('color', 'var(--color-var)')) {
@@ -17,7 +35,9 @@
     <noscript>
       <link rel="stylesheet" href="{% static "css/style-fallback.css" %}" >
     </noscript>
-    <title>Corona Live Status</title>
+    <!-- <link rel = "icon" href =
+"{% static "/images/logo.svg" %}"
+        type = "image/x-icon"/> -->
   </head>
   <body>
 
@@ -75,7 +95,6 @@
     </button>
   </div>
 </div>
-
 
 
 {% block body_block%}
