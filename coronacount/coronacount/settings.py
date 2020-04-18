@@ -27,7 +27,7 @@ SECRET_KEY = '2tabza9w9nemogdeh(5=kx$y76b)j-tl%(7acs=oezx=+!$=w%'
 DEBUG = True
 
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['www.coronacounter.site','coronacounter.site','13.234.232.175']
 
 
 # Application definition
