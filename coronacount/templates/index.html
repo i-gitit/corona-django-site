@@ -6,7 +6,7 @@
 {% load tagg %}
 
 <!-- slideshow -->
-
+<br>
 <div class="slideshow js-slideshow slideshow--transition-slide" data-swipe="on">
     <p class="sr-only">Slideshow Items</p>
 
@@ -35,7 +35,11 @@
         </td>
 
         <td class="table__cell text-right" role="cell">
-          <span class="table__label" aria-hidden="true">Cases:</span>{{world_data.1.1}}
+          <span class="table__label" aria-hidden="true">Cases:</span>
+          {% if world_data.1.2 != "" %}
+          <span class ="s"><sub>&#x2191;{{world_data.1.2|plus}}</sub></span>
+          {% endif %}
+          {{world_data.1.1}}
         </td>
 
         <td class="table__cell text-right" role="cell">
@@ -78,10 +82,14 @@
                 <span class="table__label" aria-hidden="true">Country:</span>{{maxd.0}}
               </td>
               <td class="table__cell text-right" role="cell">
-                <span class="table__label" aria-hidden="true">Deaths:</span>{{maxd.1}}
+                <span class="table__label" aria-hidden="true">Deaths:</span>
+                {% if maxd.4 != "" %}
+                <span class ="s"><sub>&#x2191;{{maxd.4|plus}}</sub></span>
+                {% endif %}
+                {{maxd.3}}
               </td>
               <td class="table__cell text-right" role="cell">
-                <span class="table__label" aria-hidden="true">Cases:</span>{{maxd.3}}
+                <span class="table__label" aria-hidden="true">Cases:</span>{{maxd.1}}
               </td>
               <td class="table__cell text-right" role="cell">
                 <span class="table__label" aria-hidden="true">Recovered:</span>{{maxd.5}}
@@ -246,119 +254,169 @@
 
 
 <!-- world -->
+<br>
+<div class="container padding-y-xs max-width-lg center" style="border:1px solid var(--color-contrast-higher); border-radius: 30px; ">
 
-<div class="container padding-y-md max-width-lg ">
-<div class="grid gap-xs left">
-<div class="offset-1 left col">
-<h4 --text-xxxl class="ch">Coronavirus Cases World </h4>
-<h2 --text-xxxl> Total </h2>
-<span class="countup text-xxl h"><span class="js-countup">{{world_data.0.1|comma}}</span></span>
+  <h3 --text-xxxl class="ch center">Coronavirus Cases World </h3>
+  <h2 --text-xxxl class="center"> Total </h2>
+  <span class="countup text-xxl h"><span class="js-countup">{{world_data.0.1|comma}}</span></span>
+    {% if world_data.0.2 != "" %}
+  <br>
+  <sub class="s">[{{world_data.0.2}}]</sub>
+  {% endif %}
+<div class="parent">
+<div class="child one">
+  <span class="ss">
+  <h3 --text-xxxl >Deaths</h3>
+  <span class="countup text-xxl d"><span class="js-countup">{{world_data.0.3|comma}}</span></span>
 
-<h3 --text-xxxl >Deaths</h3>
-<span class="countup text-xxl d"><span class="js-countup">{{world_data.0.3|comma}}</span></span>
-
-
-<h3 --text-xxxl>Recovered</h3>
-<span class="countup text-xxl r"><span class="js-countup">{{world_data.0.5|comma}}</span></span>
+  {% if world_data.0.4 != "" %}
+  <br>
+<sub class="s">[{{world_data.0.4}}]</sub>
+  {% endif %}
+</span>
 </div>
+<div class="child two">
 
-<div class="col offset-1">
-<div class="ss">
+  <div class="c-progress-bar js-c-progress-bar gap-md margin-bottom-sm " data-progress="{{perw.0}}%" data-animation="on">
+    <p class="sr-only" aria-live="polite" aria-atomic="true">Progress value is <span class="js-c-progress-bar__aria-value">60%</span></p>
 
-<div class="c-progress-bar js-c-progress-bar gap-md margin-bottom-md " data-progress="{{perw.0}}%" data-animation="on">
-  <p class="sr-only" aria-live="polite" aria-atomic="true">Progress value is <span class="js-c-progress-bar__aria-value">60%</span></p>
+    <div class="c-progress-bar__shape color-error" aria-hidden="true">
+      <span class="c-progress-bar__value">
+        <span class="js-c-progress-bar__value">60</span><i>%</i>
+      </span>
 
-  <div class="c-progress-bar__shape color-error" aria-hidden="true">
-    <span class="c-progress-bar__value">
-      <span class="js-c-progress-bar__value">60</span><i>%</i>
-    </span>
-
-    <svg viewBox="0 0 100 100" stroke-width="6" fill="none" stroke="currentColor" stroke-linecap="round">
-      <circle class="c-progress-bar__bg" cx="50" cy="50" r="44"></circle>
-      <circle class="c-progress-bar__fill" cx="50" cy="50" r="44"></circle>
-    </svg>
+      <svg viewBox="0 0 80 80" stroke-width="6" fill="none" stroke="currentColor" stroke-linecap="round">
+        <circle class="c-progress-bar__bg" cx="40" cy="40" r="30"></circle>
+        <circle class="c-progress-bar__fill" cx="40" cy="40" r="30"></circle>
+      </svg>
+    </div>
   </div>
-</div>
-</div>
-<div class="ss">
-<div class="c-progress-bar js-c-progress-bar" data-progress="{{perw.1}}%" data-animation="on">
-  <p class="sr-only" aria-live="polite" aria-atomic="true">Progress value is <span class="js-c-progress-bar__aria-value">60%</span></p>
 
-  <div class="c-progress-bar__shape color-primary" aria-hidden="true">
-    <span class="c-progress-bar__value">
-      <span class="js-c-progress-bar__value">60</span><i>%</i>
+</div>
+</div>
+
+<div class="parent">
+  <div class="child one">
+    <span class="ss">
+    <h3 --text-xxxl>Recovered</h3>
+    <span class="countup text-xxl r"><span class="js-countup">{{world_data.0.5|comma}}</span></span>
+    <!-- {% if world_data.0.4 != "" %}
+    <br>
+  <sub class="s">[{{world_data.0.4}}]</sub>
+    {% endif %} -->
     </span>
-
-    <svg viewBox="0 0 100 100" stroke-width="6" fill="none" stroke="currentColor" stroke-linecap="round">
-      <circle class="c-progress-bar__bg" cx="50" cy="50" r="44"></circle>
-      <circle class="c-progress-bar__fill" cx="50" cy="50" r="44"></circle>
-    </svg>
   </div>
+
+  <div class="child two">
+    <div class="c-progress-bar js-c-progress-bar" data-progress="{{perw.1}}%" data-animation="on">
+      <p class="sr-only" aria-live="polite" aria-atomic="true">Progress value is <span class="js-c-progress-bar__aria-value">60%</span></p>
+
+      <div class="c-progress-bar__shape color-primary" aria-hidden="true">
+        <span class="c-progress-bar__value">
+          <span class="js-c-progress-bar__value">60</span><i>%</i>
+        </span>
+
+        <svg viewBox="0 0 80 80" stroke-width="6" fill="none" stroke="currentColor" stroke-linecap="round">
+          <circle class="c-progress-bar__bg" cx="40" cy="40" r="30"></circle>
+          <circle class="c-progress-bar__fill" cx="40" cy="40" r="30"></circle>
+        </svg>
+      </div>
+    </div>
+  </div>
+
 </div>
-</div>
-</div>
-</div>
+
+
 </div>
 
 <!-- world -->
 
 
+
 <!-- India -->
+<br>
+<div class="container padding-y-xs max-width-lg center" style="border:1px solid var(--color-contrast-higher); border-radius: 30px; ">
 
+  <h3 --text-xxxl class="ch center">Coronavirus Cases INDIA </h3>
+  <h2 --text-xxxl class="center"> Total </h2>
+  <span class="countup text-xxl h"><span class="js-countup">{{india_data.confirmed}}</span></span>
+    {% if india_data.deltaconfirmed != "0" %}
+  <br>
+  <sub class="s">[+{{india_data.deltaconfirmed}}]</sub>
+  {% endif %}
+<div class="parent">
+<div class="child one">
+  <span class="ss">
+  <h3 --text-xxxl >Deaths</h3>
+  <span class="countup text-xxl d"><span class="js-countup">{{india_data.deaths}}</span></span>
 
-
-<div class="container padding-y-md max-width-lg component-one">
-<div class="grid gap-xs left">
-<div class="offset-1 left col" >
-<h4 --text-xxxl class="ch">Coronavirus Cases India </h4>
-<h2 --text-xxxl> Total </h2>
-<span class="countup text-xxl h"><span class="js-countup">{{india_data.confirmed}}</span></span><sub class="s">[+{{india_data.deltaconfirmed}}]</sub>
-
-
-
-<h3 --text-xxxl >Deaths</h3>
-<span class="countup text-xxl d"><span class="js-countup">{{india_data.deaths}}</span></span><sub class="s">[+{{india_data.deltadeaths}}]</sub>
-
-
-<h3 --text-xxxl>Recovered</h3>
-<span class="countup text-xxl r"><span class="js-countup">{{india_data.recovered}}</span></span><sub class="s">[+{{india_data.deltarecovered}}]</sub>
+  {% if india_data.deltadeaths != "0" %}
+  <br>
+<sub class="s">[+{{india_data.deltadeaths}}]</sub>
+  {% endif %}
+</span>
 </div>
+<div class="child two">
 
+  <div class="c-progress-bar js-c-progress-bar gap-md margin-bottom-sm " data-progress="{{per.0}}%" data-animation="on">
+    <p class="sr-only" aria-live="polite" aria-atomic="true">Progress value is <span class="js-c-progress-bar__aria-value">60%</span></p>
 
-<div class="col offset-1">
+    <div class="c-progress-bar__shape color-error" aria-hidden="true">
+      <span class="c-progress-bar__value">
+        <span class="js-c-progress-bar__value">60</span><i>%</i>
+      </span>
 
-<div class="c-progress-bar js-c-progress-bar gap-md margin-bottom-md " data-progress="{{per.0}}%" data-animation="on">
-  <p class="sr-only" aria-live="polite" aria-atomic="true">Progress value is <span class="js-c-progress-bar__aria-value">60%</span></p>
-
-  <div class="c-progress-bar__shape color-error" aria-hidden="true">
-    <span class="c-progress-bar__value">
-      <span class="js-c-progress-bar__value">60</span><i>%</i>
-    </span>
-
-    <svg viewBox="0 0 100 100" stroke-width="6" fill="none" stroke="currentColor" stroke-linecap="round">
-      <circle class="c-progress-bar__bg" cx="50" cy="50" r="44"></circle>
-      <circle class="c-progress-bar__fill" cx="50" cy="50" r="44"></circle>
-    </svg>
+      <svg viewBox="0 0 80 80" stroke-width="6" fill="none" stroke="currentColor" stroke-linecap="round">
+        <circle class="c-progress-bar__bg" cx="40" cy="40" r="30"></circle>
+        <circle class="c-progress-bar__fill" cx="40" cy="40" r="30"></circle>
+      </svg>
+    </div>
   </div>
+
+</div>
 </div>
 
-<div class="c-progress-bar js-c-progress-bar" data-progress="{{per.1}}%" data-animation="on">
-  <p class="sr-only" aria-live="polite" aria-atomic="true">Progress value is <span class="js-c-progress-bar__aria-value">60%</span></p>
-
-  <div class="c-progress-bar__shape color-primary" aria-hidden="true">
-    <span class="c-progress-bar__value">
-      <span class="js-c-progress-bar__value">60</span><i>%</i>
+<div class="parent">
+  <div class="child one">
+    <span class="ss">
+    <h3 --text-xxxl>Recovered</h3>
+    <span class="countup text-xxl r"><span class="js-countup">{{india_data.recovered}}</span></span>
+    {% if india_data.deltarecovered != "0" %}
+    <br>
+  <sub class="s">[+{{india_data.deltarecovered}}]</sub>
+    {% endif %}
     </span>
-
-    <svg viewBox="0 0 100 100" stroke-width="6" fill="none" stroke="currentColor" stroke-linecap="round">
-      <circle class="c-progress-bar__bg" cx="50" cy="50" r="44"></circle>
-      <circle class="c-progress-bar__fill" cx="50" cy="50" r="44"></circle>
-    </svg>
   </div>
-</div>
+
+  <div class="child two">
+    <div class="c-progress-bar js-c-progress-bar" data-progress="{{per.1}}%" data-animation="on">
+      <p class="sr-only" aria-live="polite" aria-atomic="true">Progress value is <span class="js-c-progress-bar__aria-value">60%</span></p>
+
+      <div class="c-progress-bar__shape color-primary" aria-hidden="true">
+        <span class="c-progress-bar__value">
+          <span class="js-c-progress-bar__value">60</span><i>%</i>
+        </span>
+
+        <svg viewBox="0 0 80 80" stroke-width="6" fill="none" stroke="currentColor" stroke-linecap="round">
+          <circle class="c-progress-bar__bg" cx="40" cy="40" r="30"></circle>
+          <circle class="c-progress-bar__fill" cx="40" cy="40" r="30"></circle>
+        </svg>
+      </div>
+    </div>
+  </div>
 
 </div>
-</div>
+<br>
+
+<a href="/india">
+<!-- <button class="btn btn--primary"> -->
+  Statewise Stats &#8594;
+<!-- </button> -->
+</a>
+
+
+
 </div>
 
 <!-- india -->
@@ -390,8 +448,50 @@
   font: Black 900;
 }
 .ss{
-  width: 60%;
+
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    margin-right: -50%;
+    transform: translate(-50%, -50%)
 }
+.parent {
+  display: flex;
+  flex-wrap: wrap;
+  margin: calc(var(--space-md) * -1) 0 0 calc(var(--space-md) * -1);
+}
+.parent > * {
+  padding: var(--space-md) 0 0 var(--space-md);
+  background-clip: content-box;
+}
+@supports (grid-area: auto) {
+  .parent {
+    margin: 0;
+  }
+  .parent > * {
+    padding: 0;
+    max-width: none !important;
+  }
+}
+@supports (grid-area: auto) {
+  .parent {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    grid-gap: var(--space-md);
+  }
+}
+
+.child {
+  position: relative;
+
+}
+
+.one, .two {
+  flex-basis: 50%;
+  max-width: 50%;
+  grid-column: span 2;
+}
+
 </style>
 <!-- countend -->
 {% endblock %}
