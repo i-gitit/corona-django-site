@@ -127,3 +127,23 @@ def index(request):
 
 def india(request):
     return render(request,'india.html',{"sw":getStates()})
+
+
+def countries(request):
+    global world
+    global curtime
+    a=time.time()
+    if(a-curtime>=600):
+        world=getworld()
+        curtime=a
+        print("Called")
+    else:
+        print("Not called")
+    return render(request,'countries.html',
+                        {"world_data":world[1:]})
+
+def aboutvirus(request):
+    return render(request,'aboutvirus.html')
+
+def comingsoon(request):
+    return render(request,'comingsoon.html')
