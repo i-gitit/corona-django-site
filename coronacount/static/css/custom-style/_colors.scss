@@ -44,11 +44,18 @@
 
   // color contrasts
   @include defineColorHSL(--color-bg, 0, 0%, 0%);
-  @include defineColorHSL(--color-contrast-lower, 240, 6%, 3%);
-  @include defineColorHSL(--color-contrast-low, 240, 6%, 9%);
-  @include defineColorHSL(--color-contrast-medium, 240, 7%, 24%);
-  @include defineColorHSL(--color-contrast-high, 240, 9%, 38%);
-  @include defineColorHSL(--color-contrast-higher, 240, 9%, 43%);
+    @include defineColorHSL(--color-contrast-lower, 240, 11%, 4%);
+    @include defineColorHSL(--color-contrast-low, 240, 4%, 9%);
+    @include defineColorHSL(--color-contrast-medium, 240, 6%, 25%);
+    @include defineColorHSL(--color-contrast-high, 240, 8%, 40%);
+    @include defineColorHSL(--color-contrast-higher, 240, 8%, 45%);
+
+  // @include defineColorHSL(--color-bg, 0, 0%, 0%);
+  // @include defineColorHSL(--color-contrast-lower, 240, 6%, 3%);
+  // @include defineColorHSL(--color-contrast-low, 240, 6%, 9%);
+  // @include defineColorHSL(--color-contrast-medium, 240, 7%, 24%);
+  // @include defineColorHSL(--color-contrast-high, 240, 9%, 38%);
+  // @include defineColorHSL(--color-contrast-higher, 240, 9%, 43%);
 }
 // :root, [data-theme="default"] {
 //   // main

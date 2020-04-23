@@ -86,7 +86,9 @@ def getStates():
     for a in statetotal[1:]:
         if(statewise.get(a['state'])):
             statewised[a['state']]=a
-            statewised[a['state']]['districtData']=statewise[a['state']]['districtData']
+            tosort=statewise[a['state']]['districtData']
+            sortd=sorted(tosort.items(), key=lambda x: x[1]['confirmed'],reverse=True)
+            statewised[a['state']]['districtData']=dict(sortd)
     #statewised=sorted(statewised.items(), key=lambda item: item[1]['confirmed'])
     return(statewised)
 # def getStates():
