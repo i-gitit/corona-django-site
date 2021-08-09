@@ -3,7 +3,7 @@
 </p>
 
 <div align="center">
-<h1>Coronacounter.site</h1>
+<h1>Coronacounter</h1>
 <h3>Corona virus cases stats</h3>
 </div>
 
@@ -11,7 +11,7 @@
 A responsive website which shows worldwide total cases, country-wise cases, Indian state and respective district-wise cases of COVID-19.
 
 ## Website
-[Coronacounter](http://www.coronacounter.site)
+[corona-count-stats](https://corona-count-stats.herokuapp.com/)
 
 ## Features
 
@@ -22,7 +22,7 @@ A responsive website which shows worldwide total cases, country-wise cases, Indi
 
 * [Codyhouse](https://codyhouse.co/) frontend framework
 * [Django](https://www.djangoproject.com/)
-* Hosted on [AWS](https://aws.amazon.com/)
+* Hosted on [Heroku](https://www.heroku.com)
 
 ## Preview
 
