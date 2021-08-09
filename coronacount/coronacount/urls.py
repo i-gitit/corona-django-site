@@ -25,4 +25,5 @@ urlpatterns = [
     path('countries/',views.countries,name='countries'),
     path('aboutvirus/',views.aboutvirus,name='aboutvirus'),
     path('comingsoon/',views.comingsoon,name='comingsoon'),
+    path('map/',views.indiamap,name='indiamap'),
 ]

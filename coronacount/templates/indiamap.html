@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+{% extends "base.html" %}
+{% load static %}
+
+{% block body_block%}
+
+<style type="text/css">
+
+    .alt{
+      width: 360px;
+      height: 408px;
+      align-content: center;
+      padding-left: 140px;
+      padding-top: 200px;
+    }
+    .basecontainer {
+        max-width: 800px;
+        margin: auto;
+        padding: 20px;
+    }
+
+    .mapael .map {
+        position: relative;
+    }
+
+    .mapael .mapTooltip {
+        position: absolute;
+        background-color: #474c4b;
+        moz-opacity: 1.0;
+        opacity: 0.80;
+        filter: alpha(opacity=70);
+        border-radius: 10px;
+        padding: 10px;
+        z-index: 1000;
+        max-width: 200px;
+        display: none;
+        color: Black;
+    }
+
+</style>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.1/jquery.min.js" charset="utf-8"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-mousewheel/3.1.13/jquery.mousewheel.min.js"
+        charset="utf-8"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/raphael/2.2.7/raphael.min.js" charset="utf-8"></script>
+<script src="{% static "maps/jquery.mapael.js" %}" charset="utf-8"></script>
+<script src="{% static "maps/india/india_states.js" %}" charset="utf-8"></script>
+
+
+
+<script type="text/javascript">
+    $(function () {
+        $(".mapcontainer").mapael({
+            map: {
+                // Set the name of the map to display
+                name: "india_states"
+
+                , defaultPlot: {
+                    attrs: {
+                        fill: "#004a9b"
+                        , opacity: 0.6
+                    }
+                    , attrsHover: {
+                        opacity: 1
+                    }
+                    , text: {
+                        attrs: {
+                            fill: "#505444"
+                        }
+                        , attrsHover: {
+                            fill: "#000"
+                        }
+                    }
+                }
+                , defaultArea: {
+                    attrs: {
+
+                        stroke: "#ced8d0"
+                    }
+                    , attrsHover: {
+                        fill: "#00c230"
+                    }
+                    , text: {
+                        attrs: {
+                            fill: "#00c230"
+                        }
+                        , attrsHover: {
+                            fill: "#000"
+                        }
+                    }
+                }
+            },
+
+            areas: {
+              {% for sn,sd in sw.items %}
+                "{{sn}}":{
+
+                  text: {content: "{{sn}}", attrs: {"font-size": 30}},
+                  tooltip: {content: "<b>{{sn}}</b> <br /> Confirmed: {{sd.confirmed}} <br/>Deaths: {{sd.deaths}}<br/>Recovered: {{sd.recovered}}" }
+
+
+                },
+              {% endfor %}
+
+            }
+
+
+        });
+    });
+</script>
+
+    <div class="basecontainer">
+
+
+
+        <div class="mapcontainer">
+            <div class="map">
+              <div class="alt">
+
+
+
+<div class="fill-loader fill-loader--v1 center" role="alert">
+  <p class="fill-loader__label">Content is loading...</p>
+  <div aria-hidden="true">
+    <div class="fill-loader__base"></div>
+    <div class="fill-loader__fill"></div>
+  </div>
+</div>
+
+
+
+
+              </div>
+
+            </div>
+        </div>
+
+
+    </div>
+
+
+
+{% endblock %}

@@ -37,14 +37,14 @@ def getworld():
     a = soup.find("table", attrs={'id':'main_table_countries_today'})
     for row in a.find_all('tr')[8:-9]:
         country=[]
-        for r in row.find_all('td')[:8]:
+        for r in row.find_all('td')[1:8]:
             country.append(r.text)
         world.append(country)
     i=1
     max=0
     deathi=0
     for c in world[1:15]:
-        if int(c[3].replace(',',''))>max:
+        if c[3].replace(' ','') and int(c[3].replace(',',''))>max:
             max=int(c[3].replace(',',''))
             deathi = i
         i+=1
@@ -52,7 +52,7 @@ def getworld():
     deltacase=0
     max=0
     for c in world[1:-80]:
-        if c[2] and int(c[2].replace(',',''))>max:
+        if c[2].replace(' ','') and int(c[2].replace(',',''))>max:
             max=int(c[2].replace(',',''))
             deltacase = i
         i+=1
@@ -60,7 +60,7 @@ def getworld():
     deltadeath=0
     max=0
     for c in world[1:-80]:
-        if c[4] and int(c[4].replace(',',''))>max:
+        if c[4].replace(' ','') and int(c[4].replace(',',''))>max:
             max=int(c[4].replace(',',''))
             deltadeath = i
         i+=1
@@ -128,7 +128,13 @@ def index(request):
     #return render(request,'base.html')
 
 def india(request):
-    return render(request,'india.html',{"sw":getStates()})
+    s=getStates()
+    values_view = s.values()
+
+    value_iterator = iter(values_view)
+
+    first_value = next(value_iterator)
+    return render(request,'india.html',{"sw":s,"max":first_value})
 
 
 def countries(request):
@@ -149,3 +155,6 @@ def aboutvirus(request):
 
 def comingsoon(request):
     return render(request,'comingsoon.html')
+
+def indiamap(request):
+    return render(request,'indiamap.html',{"sw":getStates()})
