@@ -10,8 +10,6 @@
 ## About
 A responsive website which shows worldwide total cases, country-wise cases, Indian state and respective district-wise cases of COVID-19.
 
-## Website
-[corona-count-stats](https://corona-count-stats.herokuapp.com/)
 
 ## Features
 
